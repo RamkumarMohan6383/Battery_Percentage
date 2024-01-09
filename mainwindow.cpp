@@ -74,9 +74,9 @@ void MainWindow::Call()
     }
     else if(batteryPercentage>20 && batteryPercentage<30)
     {
-        ui->label_5->setStyleSheet("background-color:red;border:none;");
-        ui->label_6->setStyleSheet("background-color: red;border:none;");
-        ui->label_7->setStyleSheet("background-color: green;border:none;");
+        ui->label_5->setStyleSheet("background-color:red");
+        ui->label_6->setStyleSheet("background-color:red");
+        ui->label_7->setStyleSheet("background-color:red");
         ui->label_8->setStyleSheet("background-color: rgb(82, 144, 198);border:none;");
         ui->label_10->setStyleSheet("background-color: rgb(82, 144, 198);border:none;");
         ui->label_11->setStyleSheet("background-color:rgb(82, 144, 198);border:none;");
