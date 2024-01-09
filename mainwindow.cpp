@@ -41,13 +41,10 @@ int MainWindow::readadc( int pin)
 void MainWindow::Call()
 {
     int adcValue = readadc(7);
-   /* QString adc=QString::number(adcValue,'f',2);
-    double ADC=adc.toInt();*/
     double voltage = (adcValue / 4096.0) * Vref;
     double batteryPercentage = static_cast<double>(round(((voltage - minVoltage) / (maxVoltage - minVoltage)) * 100));
-    int battery = ((voltage - minVoltage) / (maxVoltage - minVoltage)) * 100;
-    qDebug() << "ADC : "<<adcValue<<" "<<"Battery Percentage: " << batteryPercentage << "%"<<" "<<"Battey : "<<QString::number(battery,'f',2);
-    ui->label_3->setText(QString("%1%").arg(battery));
+    qDebug() << "ADC : "<<adcValue<<" "<<"Battery Percentage: " << batteryPercentage << "%";
+    ui->label_3->setText(QString("%1%").arg(batteryPercentage));
     ui->label->setText(QString::number(adcValue));
     if(batteryPercentage<=10)
     {
