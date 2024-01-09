@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->label->setVisible(false);
     ui->label_2->setVisible(false);
+     ui->label_3->setVisible(false);
     wiringPiSetup();
     mcp3004Setup (ADC_BASE, SPI_CHAN);
     ui->label_3->setAttribute(Qt::WA_TranslucentBackground);
@@ -40,10 +41,12 @@ int MainWindow::readadc( int pin)
 void MainWindow::Call()
 {
     int adcValue = readadc(7);
+   /* QString adc=QString::number(adcValue,'f',2);
+    double ADC=adc.toInt();*/
     double voltage = (adcValue / 4096.0) * Vref;
-    int batteryPercentage = static_cast<int>(round(((voltage - minVoltage) / (maxVoltage - minVoltage)) * 100));
+    double batteryPercentage = static_cast<double>(round(((voltage - minVoltage) / (maxVoltage - minVoltage)) * 100));
     int battery = ((voltage - minVoltage) / (maxVoltage - minVoltage)) * 100;
-    qDebug() << "ADC : "<<adcValue<<" "<<"Battery Percentage: " << batteryPercentage << "%"<<" "<<"Battey : "<<battery;
+    qDebug() << "ADC : "<<adcValue<<" "<<"Battery Percentage: " << batteryPercentage << "%"<<" "<<"Battey : "<<QString::number(battery,'f',2);
     ui->label_3->setText(QString("%1%").arg(battery));
     ui->label->setText(QString::number(adcValue));
     if(batteryPercentage<=10)
